@@ -1,4 +1,4 @@
-# ImageJ-Batch-sparse-cell-counting-script
+# ImageJ Batch sparse cell counting script
 
 This is a simple script for ImageJ for quantifying separate cells in batch mode. Useful for sparse cells in tissue sections.
 
