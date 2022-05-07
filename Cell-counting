@@ -1,0 +1,32 @@
+// At first the program ask user to select a folder
+dir = getDirectory("Select A folder");
+
+// get the list of files (& folders) in it
+fileList = getFileList(dir);
+
+// Start processing the list of files of the selected folder
+for (i = 0; i < lengthOf(fileList); i++) {
+
+// check that the currentFile is not a directory
+if (!File.isDirectory(current_imagePath)){
+// open images
+open(current_imagePath);
+
+// Draw the ROI to work with. It will appear a waiting message. Once done, click ok.
+roiManager("draw");
+waitForUser;
+
+//Once draw the ROI, it starts setting threshold and the analysis.
+//Here we have some values, but you can change the threshold with the values you need. 
+setThreshold(600, 65535);
+
+run("Analyze Particles...", "size=60-1400 pixel clear summarize overlay");
+
+//Closes image windows once processed in order to not accumulate a lot of images on the program/screen but it doesn't close Summary tables.
+run("Close All");
+
+}
+}
+//Opens a window dialog to save the Summary tables in a selected directory
+selectWindow("Summary");
+saveAs("results");
